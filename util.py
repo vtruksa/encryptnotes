@@ -20,7 +20,7 @@ def open_file(textbox):
 def save_file(textbox):
     global t, path
     t = textbox
-    path = filedialog.asksaveasfilename(title="Save as...", defaultextension=".txt")
+    path = filedialog.asksaveasfilename(title="Save as...", defaultextension=".bin")
     print(type(t))
     if path: ask_password(t="save")
     else: print("No file selected")
