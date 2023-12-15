@@ -50,8 +50,8 @@ def __decrypt_file(password):
     cipher = AES.new(key, AES.MODE_EAX, nonce)
     data = cipher.decrypt_and_verify(ciphertext, tag)
 
-    #if t.get('1.0', 'end-1c') is not None: t.delete(0, 'end')
-    t.insert(index=0, chars=str(data))
+    t.delete(1.0, tk.END)
+    t.insert(tk.END, data)
 
 def ask_password(t):
     global win
