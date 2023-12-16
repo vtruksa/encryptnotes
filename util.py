@@ -9,6 +9,10 @@ win = None
 path = None
 t = None
 
+def setup(textbox):
+    global t
+    t = textbox
+
 def open_file(textbox):
     global t, path
     t = textbox
@@ -16,13 +20,13 @@ def open_file(textbox):
 
     if path[-4:] != '.bin': alert("The selected file has a wrong format")
 
-    if path: ask_password(t="open")
-    else: print("No file selected")
+    ask_password(t="open")
 
 def open_file_dragndrop(event):
     global t, path
     path = event.data
-    print(path)
+    if path[-4:] != '.bin': alert("The selected file has a wrong format")
+    ask_password(t="open")
 
 def save_file(textbox):
     global t, path
