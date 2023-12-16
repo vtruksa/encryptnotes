@@ -14,8 +14,15 @@ def open_file(textbox):
     t = textbox
     path = filedialog.askopenfilename(title="Open a file...")
 
+    if path[-4:] != '.bin': alert("The selected file has a wrong format")
+
     if path: ask_password(t="open")
     else: print("No file selected")
+
+def open_file_dragndrop(event):
+    global t, path
+    path = event.data
+    print(path)
 
 def save_file(textbox):
     global t, path
@@ -48,7 +55,9 @@ def __decrypt_file(password):
 
     key = pbkdf2.PBKDF2(password, salt=b'').read(16)
     cipher = AES.new(key, AES.MODE_EAX, nonce)
-    data = cipher.decrypt_and_verify(ciphertext, tag)
+    try: data = cipher.decrypt_and_verify(ciphertext, tag)
+    except ValueError: 
+        alert("The password you've entered is incorrect")
 
     t.delete(1.0, tk.END)
     t.insert(tk.END, data)
@@ -69,4 +78,15 @@ def ask_password(t):
     else: btn = tk.Button(win, text="Enter", command=lambda: __encrypt_file(password))
     btn.pack()
 
+    win.mainloop()
+
+def alert(message):
+    win = tk.Tk()
+    win.title(message)
+    label = tk.Label(win, text=message)
+    label.pack()
+
+    ok_btn = tk.Button(win, text="OK", command=lambda: win.destroy())
+    ok_btn.pack()
+    
     win.mainloop()
