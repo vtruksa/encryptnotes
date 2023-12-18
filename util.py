@@ -6,12 +6,14 @@ import pbkdf2
 from Crypto.Cipher import AES
 
 win = None
+root = None
 path = None
 t = None
 
-def setup(textbox):
-    global t
-    t = textbox
+def setup(textbox, r):
+    global t, root
+    t = textbox 
+    root = root
 
 def open_file(textbox):
     global t, path
@@ -28,7 +30,11 @@ def open_file_dragndrop(event):
     if path[-4:] != '.bin': alert("The selected file has a wrong format")
     ask_password(t="open")
 
-def save_file(textbox):
+def save_file():
+    
+    pass
+
+def save_as(textbox):
     global t, path
     t = textbox
     path = filedialog.asksaveasfilename(title="Save as...", defaultextension=".bin")
@@ -68,7 +74,7 @@ def __decrypt_file(password):
 
 def ask_password(t):
     global win
-    win = tk.Tk()
+    win = tk.Toplevel(root)
     win.title("Enter a password")
     win.geometry("250x100+500+500")
 
@@ -85,7 +91,7 @@ def ask_password(t):
     win.mainloop()
 
 def alert(message):
-    win = tk.Tk()
+    win = tk.Toplevel(root)
     win.title(message)
     label = tk.Label(win, text=message)
     label.pack()
