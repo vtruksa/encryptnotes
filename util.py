@@ -54,6 +54,7 @@ def __encrypt_file(password):
     f = open(path, 'wb')
     for ch in cipher.nonce, tag, ciphertext: f.write(ch)
     f.close()
+    alert("File saved")
 
 def __decrypt_file(password):
     password = bytes(password.get(), 'UTF-8')
@@ -81,7 +82,7 @@ def ask_password(t):
     label = tk.Label(win, text="Enter your password...")
     label.pack()
 
-    password = tk.Entry(win)
+    password = tk.Entry(win, show="*")
     password.pack()
 
     if t == "open": btn = tk.Button(win, text="Enter", command=lambda: __decrypt_file(password))
