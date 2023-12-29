@@ -19,9 +19,9 @@ style.configure("btnmenu.TButton", font="Ariel")
 
 open_btn = ttk.Button(btns, text="Open file...", command=lambda: open_file(textbox), style="btnmenu.TButton")
 open_btn.pack(side='left')
-save_btn = ttk.Button(btns, text="Save", style='btnmenu.TButton')
+save_btn = ttk.Button(btns, text="Save", style='btnmenu.TButton', command=save_file)
 save_btn.pack(side='left')
-save_as_btn = ttk.Button(btns, text="Save as...", command=lambda: save_as(textbox), style="btnmenu.TButton")
+save_as_btn = ttk.Button(btns, text="Save as...", command=lambda: save_as(), style="btnmenu.TButton")
 save_as_btn.pack(side='left')
 
 textbox = tk.Text(root, height = 500, width=960)

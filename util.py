@@ -31,16 +31,16 @@ def open_file_dragndrop(event):
     ask_password(t="open")
 
 def save_file():
-    
-    pass
+    if path is None: save_as()
+    ask_password(t="save")
 
-def save_as(textbox):
-    global t, path
+def save_as():
+    global path
     t = textbox
     path = filedialog.asksaveasfilename(title="Save as...", defaultextension=".bin")
     print(type(t))
     if path: ask_password(t="save")
-    else: print("No file selected")
+    else: alert("Invalid path")
 
 def __encrypt_file(password):
     data = bytes(t.get('1.0', 'end-1c'), 'UTF-8')
