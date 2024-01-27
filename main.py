@@ -6,8 +6,6 @@ from tkinterdnd2 import TkinterDnD, DND_FILES
 
 from Crypto.Cipher import AES
 
-from util import *
-
 class App():
     def __init__(self):
         self.root = TkinterDnD.Tk()
