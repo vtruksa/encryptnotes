@@ -36,7 +36,6 @@ def save_file():
 
 def save_as():
     global path
-    t = textbox
     path = filedialog.asksaveasfilename(title="Save as...", defaultextension=".bin")
     print(type(t))
     if path: ask_password(t="save")
